@@ -9,7 +9,7 @@ packages = [{ include = "backoffice", from = "src" }]
 python = "3.13.*"
 fastapi = ">=0.118,<0.120"
 uvicorn = { version = ">=0.30,<0.32", extras = ["standard"] }
-pydantic = ">=2,<3"
+pydantic = {extras = ["email"], version = "^2.12.3"}
 sqlalchemy = ">=2.0,<3.0"
 alembic = ">=1.12,<2.0"
 asyncpg = ">=0.30,<0.32"
