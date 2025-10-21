@@ -4,7 +4,7 @@ from sqlalchemy import engine_from_config, pool
 from src.backoffice.core.config import db_settings
 
 from alembic import context
-from src.backoffice.models import Base
+from src.backoffice.models.all import Base
 
 config = context.config
 

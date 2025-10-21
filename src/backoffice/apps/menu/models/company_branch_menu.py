@@ -3,8 +3,6 @@ from decimal import Decimal
 from sqlalchemy import Boolean, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.backoffice.apps.company.models import CompanyBranch
-from src.backoffice.apps.menu.models import MenuItem
 from src.backoffice.models import Base, IdMixin
 
 
@@ -33,6 +31,6 @@ class CompanyBranchMenu(Base, IdMixin):
     company_branch: Mapped["CompanyBranch"] = relationship(
         back_populates="branch_menus",
     )
-    menu_item: Mapped["MenuItem"] = relationship(
+    menu_item: Mapped["MenuItem"] = relationship(  # type: ignore
         back_populates="branch_menus",
     )

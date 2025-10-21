@@ -14,7 +14,7 @@ class QRCode(IdMixin, Base):
     __tablename__ = "qr_codes"
 
     company_branch_id: Mapped[int] = mapped_column(
-        ForeignKey("CompanyBranch.id", ondelete="CASCADE"), index=True, nullable=False
+        ForeignKey("company_branches.id", ondelete="CASCADE"), index=True, nullable=False
     )
     qr_options: Mapped[Optional[Dict[str, Any]]] = mapped_column(
         JSONB,
@@ -39,6 +39,6 @@ class QRCode(IdMixin, Base):
     )
 
     __table_args__ = (
-        UniqueConstraint("url_hash", "uq_qr_codes_url_hash"),
+        UniqueConstraint("url_hash", name="uq_qr_codes_url_hash"),
         CheckConstraint("scan_count >= 0", name="ck_qr_codes_scan_count_nonneg"),
     )

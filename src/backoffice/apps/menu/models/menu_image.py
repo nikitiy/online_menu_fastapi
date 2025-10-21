@@ -8,6 +8,7 @@ from src.backoffice.models import Base, CreatedUpdatedMixin, IdMixin
 
 class MenuImage(Base, IdMixin, CreatedUpdatedMixin):
     """Модель для изображений элементов меню"""
+    __tablename__ = "menu_images"
     __repr_fields__ = ("filename", "menu_item_id", "is_primary")
 
     # Основные поля

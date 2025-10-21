@@ -1,7 +1,8 @@
+from typing import List
+
 from sqlalchemy import ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-# Импорты будут добавлены в __init__.py для избежания циклических импортов
 from src.backoffice.models import Base, IdMixin
 
 
@@ -22,7 +23,7 @@ class Region(Base, IdMixin):
 
     # Relationships
     country: Mapped["Country"] = relationship("Country", back_populates="regions")  # type: ignore
-    cities: Mapped[list["City"]] = relationship(  # type: ignore
+    cities: Mapped[List["City"]] = relationship(  # type: ignore
         "City", back_populates="region", cascade="all, delete-orphan"
     )
 

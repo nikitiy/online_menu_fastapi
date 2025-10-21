@@ -43,7 +43,6 @@ class SingletonMixin:
         server_default=text("1"),
     )
 
-    @classmethod
     @declared_attr
     def __table_args__(cls) -> Tuple[Constraint, ...]:
         table_name = getattr(cls, "__tablename__", cls.__name__.lower())

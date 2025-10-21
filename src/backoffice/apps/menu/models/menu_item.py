@@ -10,7 +10,9 @@ from src.backoffice.models import Base, CreatedUpdatedMixin, IdMixin
 
 
 class MenuItem(Base, IdMixin, CreatedUpdatedMixin):
+    __tablename__ = "menu_items"
     __repr_fields__ = ("slug", "name", "category_id")
+
     slug: Mapped[str] = mapped_column(
         String(255), unique=True, index=True, nullable=False
     )
