@@ -1,0 +1,29 @@
+from sqlalchemy import ForeignKey, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# Импорты будут добавлены в __init__.py для избежания циклических импортов
+from src.backoffice.models import Base, IdMixin
+
+
+class Region(Base, IdMixin):
+    """Модель региона/области/штата"""
+
+    __tablename__ = "regions"
+    __repr_fields__ = ("name", "country_id")
+
+    name: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    name_en: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    code: Mapped[str] = mapped_column(String(20), nullable=True, index=True)
+    country_id: Mapped[int] = mapped_column(
+        ForeignKey("countries.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    description: Mapped[str] = mapped_column(Text, nullable=True)
+    is_active: Mapped[bool] = mapped_column(default=True, nullable=False)
+
+    # Relationships
+    country: Mapped["Country"] = relationship("Country", back_populates="regions")  # type: ignore
+    cities: Mapped[list["City"]] = relationship(  # type: ignore
+        "City", back_populates="region", cascade="all, delete-orphan"
+    )
+
+    
